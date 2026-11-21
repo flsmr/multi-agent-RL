@@ -1,0 +1,11 @@
+{
+  "name": "random_seed0",
+  "status": "prepared",
+  "policy": "random",
+  "seed": 0,
+  "worker_id": 1,
+  "episodes": 5,
+  "max_steps": 1000,
+  "graphics": false,
+  "environment": "env/Tennis_Linux/Tennis.x86_64"
+}

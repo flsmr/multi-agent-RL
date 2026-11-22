@@ -1,0 +1,24 @@
+{
+  "seed": 2,
+  "worker_id": 7700,
+  "iterations": 2000,
+  "rollout_steps": 512,
+  "hidden_size": 128,
+  "environment": "env/Tennis_Linux/Tennis.x86_64",
+  "checkpoint_every": 40,
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "gamma": 0.995,
+    "clip_epsilon": 0.2,
+    "update_epochs": 4,
+    "minibatch_size": 512,
+    "value_loss_coef": 0.5,
+    "gae_lambda": 0.95
+  },
+  "name": "teacher_obsnorm_reproduction",
+  "status": "prepared",
+  "num_envs": 8,
+  "worker_timeout_seconds": 120,
+  "target_score": 1.0,
+  "normalize_observations": true
+}

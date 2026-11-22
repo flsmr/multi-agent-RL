@@ -4,6 +4,7 @@ This project applies policy distillation to a cooperative two-agent Tennis task.
 A shared teacher policy is trained with Proximal Policy Optimization (PPO) using
 both players' observations. A student policy then learns to reproduce the
 teacher's actions through supervised regression using only its own observation.
+Optional observation normalization halves the experience the teacher needs.
 The implementation uses Python, PyTorch and the Udacity Unity Tennis environment.
 
 ![The distilled student controlling both players in Unity](assets/student_playing.gif)
@@ -102,6 +103,8 @@ and select `--mode stochastic` or `--mode deterministic`.
 | Teacher trained to a 1.0 rolling mean | [checkpoint.pt](runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt) |
 | Student selected by validation MSE; used in the GIF | [best.pt](runs/student_distill_target1_seed0/best.pt) |
 | Student after the final fitting epoch | [checkpoint.pt](runs/student_distill_target1_seed0/checkpoint.pt) |
+| Teacher with observation normalization, trained to 1.0 | [checkpoint.pt](runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt) |
+| Student distilled from the normalized teacher | [best.pt](runs/student_obsnorm_seed2/best.pt) |
 
 ## Results
 
@@ -113,7 +116,10 @@ means, not variation across independent training runs.
 | --- | ---: | ---: | ---: |
 | Teacher, stochastic | 48 | 0.884 ± 0.051 | 5/5 |
 | Teacher, deterministic | 48 | 1.766 ± 0.014 | 5/5 |
-| Student, deterministic | 24 | **1.766 ± 0.013** | **5/5** |
+| Student, deterministic | 24 | 1.766 ± 0.013 | 5/5 |
+| Normalized teacher, stochastic | 48 | 1.392 ± 0.115 | 5/5 |
+| Normalized teacher, deterministic | 48 | 1.775 ± 0.000 | 5/5 |
+| Student of normalized teacher, deterministic | 24 | **1.775 ± 0.000** | **5/5** |
 
 The teacher used eight environments with 512 rollout steps each. It first reached
 a 100-episode training mean of **0.5 at 508,160 environment steps** and **1.0 at
@@ -127,14 +133,35 @@ needed to reach 0.5 by about **55%** in these trials. Training to 1.0 improved
 stochastic evaluation, but the earlier stop-at-0.5 teacher scored higher with
 deterministic actions (2.150). An earlier single-environment pipeline also
 produced a higher-scoring student (2.143). Those policies and logs are retained.
-
-The [report](Report.pdf) presents the experimental comparisons, the
-[extended learning curve](assets/teacher_extended_training.png), distillation
-losses, and the interpretation of shorter rollouts. Results come from individual
-training seeds; repeated-seed ablations are needed to establish robustness.
 Raw evaluation records: [stochastic teacher](runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/evaluation_stochastic_seeds/summary.json),
 [deterministic teacher](runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/evaluation_deterministic_seeds/summary.json),
 [student](runs/student_distill_target1_seed0/evaluation_deterministic_seeds/summary.json).
+
+### Observation normalization
+
+With `"normalize_observations": true`, every teacher input is standardized with a
+running mean and variance and clipped to ±5. One set of statistics for the 24
+local values serves both halves of the 48-value input. The statistics are updated
+after each PPO update, stored in the network and saved in checkpoints. Without
+the switch, training is unchanged and older checkpoints load as before.
+
+The current procedure was run with and without normalization on training seeds
+2, 10 and 20, with everything else identical:
+
+| Teacher | Steps to 0.5 (seeds 2 / 10 / 20) | Mean | Steps to 1.0, mean |
+| --- | ---: | ---: | ---: |
+| Baseline | 508,160 / 589,504 / 668,352 | 588,672 | 659,077 |
+| Observation normalization | 243,304 / 340,008 / 216,656 | **266,656** | **328,981** |
+
+Normalization reduced the steps to 0.5 by about **55%** and to 1.0 by about
+**50%**; every normalized seed was faster than every baseline seed. The student
+distilled from the normalized seed-2 teacher matches the main student.
+
+![Teacher learning curves with and without observation normalization](assets/observation_normalization.png)
+
+The [report](Report.pdf) describes the method and both comparisons, the
+distillation results and an analysis of the evaluation games. The rollout
+comparison uses a single training seed; the normalization comparison uses three.
 
 ## Reproducing the study
 
@@ -159,6 +186,19 @@ python evaluate.py --checkpoint runs/student_distill_target1_reproduction/best.p
   --output-dir runs/student_target1_reproduction_evaluation
 ```
 
+The same pipeline with observation normalization uses its own prepared configs:
+
+```bash
+python train_teacher.py --config runs/teacher_obsnorm_reproduction/config.json
+python collect_teacher_demonstrations.py \
+  --config runs/teacher_demonstrations_obsnorm_reproduction/config.json
+python distill_student.py --config runs/student_distill_obsnorm_reproduction/config.json
+```
+
+The completed comparison runs are `runs/teacher_baseline_p8r512_t1_seed*` and
+`runs/teacher_obsnorm_p8r512_t1_seed*`. To repeat one, copy its settings into a
+new prepared config.
+
 The teacher has separate actor and critic networks with two 128-unit tanh hidden
 layers. Each worker collects a rollout with a frozen teacher copy; the parent
 updates PPO from **8 × 512 × 2 = 8,192 player samples**. Episodes continue across
@@ -167,7 +207,7 @@ trained offline with action MSE. Complete matches stay together in the
 training/validation split.
 
 Settings are stored in each run's `config.json`. `target_score` defaults to 0.5;
-the supplied teacher config sets 1.0 and records separate first-crossing policies
+`normalize_observations` defaults to `false`. The supplied teacher configs set 1.0 and records separate first-crossing policies
 at both thresholds. Only `prepared` runs containing just `config.json` can start.
 Completed configs preserve experiment records; use fresh folders for variants.
 Exact training resume is not implemented.
@@ -185,7 +225,9 @@ python -m unittest discover -s tests -v
 ```
 
 These regression checks cover configurable stopping targets, recording both
-score milestones, policy snapshots, and invalid target settings. They use a
+score milestones, policy snapshots, invalid target settings, and observation
+normalization: running statistics, consistency within a PPO update, checkpoints
+and worker snapshots. They use a
 simulated collector and do not require the Unity executable. Frozen-policy
 evaluation with Unity is a separate check of gameplay performance.
 
@@ -224,19 +266,15 @@ adjacent JSON records the checkpoint hash, seed and capture settings.
 | `record_student.py` | Unity gameplay recording |
 | `runs/`, `datasets/` | Configs, weights, logs, evaluation records and data manifests |
 | `assets/` | Figures, gameplay GIF and recording metadata |
-| `Report.pdf`, `Report.html` | Research report and generated HTML version |
+| `Report.pdf` | Research report |
 
-To regenerate the figures and report from saved results, without Unity or
-raw demonstration shards:
+To regenerate the supplementary figures in `assets/` from saved results, without
+Unity or raw demonstration shards:
 
 ```bash
 python plot_teacher_results.py
 python plot_report_figures.py
-python build_report.py --pdf
 ```
-
-PDF generation requires Chrome/Chromium. Omit `--pdf` to generate HTML only.
-Report text and layout are maintained in `build_report.py`.
 
 ## Acknowledgments and third-party licenses
 

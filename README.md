@@ -174,8 +174,11 @@ The current procedure was run with and without normalization on training seeds
 | Observation normalization | 243,304 / 340,008 / 216,656 | **266,656** | **6,528** | **328,981** |
 
 Normalization reduced the steps to 0.5 by about **55%** and to 1.0 by about
-**50%**; every normalized seed was faster than every baseline seed. The student
-distilled from the normalized seed-2 teacher matches the main student.
+**50%**; every normalized seed was faster than every baseline seed. The
+normalized teacher with seed 2, which was distilled into a student, **solved the
+environment at episode 5,751** (243,304 environment steps) and reached 1.0 at episode 6,022, less than
+half of the main run's 12,809 episodes. The student distilled from it matches the
+main student.
 
 ![Teacher learning curves with and without observation normalization](assets/observation_normalization.png)
 

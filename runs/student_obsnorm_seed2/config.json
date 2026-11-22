@@ -1,0 +1,41 @@
+{
+  "dataset": "datasets/demos_obsnorm_seed2",
+  "seed": 0,
+  "hidden_size": 128,
+  "learning_rate": 0.0003,
+  "batch_size": 1024,
+  "epochs": 50,
+  "patience": 5,
+  "min_delta": 1e-06,
+  "device": "cpu",
+  "cpu_threads": "auto",
+  "name": "student_obsnorm_seed2",
+  "status": "complete",
+  "started_at": "2026-11-22T00:22:38.817498+00:00",
+  "environment": "env/Tennis_Linux/Tennis.x86_64",
+  "dataset_manifest_sha256": "73ac9bc1617c04311cb1e69494ade6367cbbc612ad99f6ed7911c7b3a9e8c765",
+  "teacher_sha256": "ae69a7bff12386ab15357027ac15a75416c71ee8909dc66c16fe14af1f6c9ba6",
+  "training_samples": 467598,
+  "validation_samples": 46184,
+  "training_episodes": 333,
+  "validation_episodes": 35,
+  "epochs_completed": 38,
+  "best_epoch": 37,
+  "best_validation_mse": 0.0006511418489384507,
+  "software": {
+    "torch": "2.14.1+cpu",
+    "numpy": "1.26.4",
+    "device": "cpu"
+  },
+  "selected_cpu_threads": 8,
+  "initial_validation_mse": 0.2854646488717002,
+  "stop_reason": "validation_patience",
+  "final_validation": {
+    "mse": 0.0006734074124597431,
+    "movement_mse": 0.00025961714195064646,
+    "jump_mse": 0.0010871976829688397,
+    "jump_agreement": 0.9670232115018188
+  },
+  "finished_at": "2026-11-22T00:22:58.065495+00:00",
+  "elapsed_seconds": 19.243779409000126
+}

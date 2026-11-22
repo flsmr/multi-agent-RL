@@ -1,0 +1,25 @@
+{
+  "selected_threads": 8,
+  "measurements": [
+    {
+      "threads": 1,
+      "optimizer_steps_per_second": 606.9377230152242
+    },
+    {
+      "threads": 2,
+      "optimizer_steps_per_second": 919.088967643241
+    },
+    {
+      "threads": 4,
+      "optimizer_steps_per_second": 903.7544853916986
+    },
+    {
+      "threads": 8,
+      "optimizer_steps_per_second": 1080.0058622196468
+    },
+    {
+      "threads": 16,
+      "optimizer_steps_per_second": 1077.6475212845444
+    }
+  ]
+}

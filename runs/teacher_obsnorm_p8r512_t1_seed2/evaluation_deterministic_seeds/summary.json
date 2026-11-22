@@ -1,0 +1,117 @@
+{
+  "status": "complete",
+  "policy_type": "teacher",
+  "mode": "deterministic",
+  "checkpoint": "runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt",
+  "checkpoint_sha256": "ae69a7bff12386ab15357027ac15a75416c71ee8909dc66c16fe14af1f6c9ba6",
+  "seeds": [
+    10002,
+    10003,
+    10004,
+    10005,
+    10006
+  ],
+  "episodes_per_seed": 100,
+  "workers": 4,
+  "max_steps": 10000,
+  "seed_timeout_seconds": 1000,
+  "started_at": "2026-11-22T00:22:59.143028+00:00",
+  "per_seed": [
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10002,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7610000262409449,
+        1.7527000262401997
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10003,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7630000262707473,
+        1.7507000262103976
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10004,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7610000262409449,
+        1.7527000262401997
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10005,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.755000026151538,
+        1.7587000263296069
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10006,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7630000262707473,
+        1.7507000262103976
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_obsnorm_p8r512_t1_seed2/checkpoint.pt"
+    }
+  ],
+  "mean_score": 1.7750000264495611,
+  "seed_mean_std": 0.0,
+  "minimum_seed_mean": 1.7750000264495611,
+  "maximum_seed_mean": 1.7750000264495611,
+  "passed_seeds": 5,
+  "seed_count": 5,
+  "episodes": 500,
+  "truncated_episodes": 0,
+  "time_limit_episodes": 335,
+  "finished_at": "2026-11-22T00:27:48.405507+00:00",
+  "elapsed_seconds": 289.2623148450002
+}

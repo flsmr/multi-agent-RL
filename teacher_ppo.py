@@ -2,7 +2,7 @@
 import numpy as np
 import torch
 
-from teacher_model import TeacherActorCritic
+from teacher_model import RunningObservationStatistics, TeacherActorCritic
 
 class TeacherRolloutBuffer:
     def __init__(self, rollout_steps, num_agents, state_size, action_size):
@@ -79,6 +79,7 @@ class TeacherPPOAgent:
                  minibatch_size=512,
                  value_loss_coef=0.5,
                  gae_lambda=0.95,
+                 normalize_observations=False,
     ):
         self.gamma = gamma
         self.clip_epsilon = clip_epsilon
@@ -91,6 +92,10 @@ class TeacherPPOAgent:
             state_size=state_size,
             action_size=action_size,
             hidden_size=hidden_size,
+            normalize_observations=normalize_observations,
+        )
+        self.observation_statistics = (
+            RunningObservationStatistics() if normalize_observations else None
         )
 
         self.optimizer = torch.optim.Adam(
@@ -227,6 +232,12 @@ class TeacherPPOAgent:
                 value_loss_sum += value_loss.item() * batch_size
                 processed_samples += batch_size
                 optimizer_steps += 1
+
+        if self.observation_statistics is not None:
+            # Collection and this update used the same statistics, so PPO ratios start at 1.
+            # The new statistics take effect from the next rollout onward.
+            self.observation_statistics.update(rollout.states[:count])
+            self.model.set_observation_statistics(*self.observation_statistics.model_statistics())
 
         return {
             "policy_loss": policy_loss_sum / processed_samples,

@@ -39,8 +39,11 @@ def validate_config(path, config):
         raise ValueError("Only prepared runs can start; create a new run folder.")
     fields = {"name", "status", "seed", "worker_id", "iterations", "rollout_steps",
               "hidden_size", "environment", "hyperparameters", "checkpoint_every"}
-    if not fields <= set(config) or set(config) - fields - {"num_envs", "worker_timeout_seconds", "target_score"}:
+    if not fields <= set(config) or set(config) - fields - {"num_envs", "worker_timeout_seconds", "target_score",
+                                                      "normalize_observations"}:
         raise ValueError("Prepared config has missing or unknown fields.")
+    if type(config.get("normalize_observations", False)) is not bool:
+        raise ValueError("normalize_observations must be true or false.")
     target = config.get("target_score", 0.5)
     if type(target) not in (int, float) or not np.isfinite(target) or target <= 0:
         raise ValueError("target_score must be positive and finite.")
@@ -93,6 +96,7 @@ def save_checkpoint(run_dir, agent, config, filename="checkpoint.pt"):
         "optimizer_state_dict": agent.optimizer.state_dict(),
         "state_size": 48, "action_size": 2, "hidden_size": config["hidden_size"],
         "observation_order": "self_then_other", "config": config.copy(),
+        "normalize_observations": agent.model.normalize_observations,
     }
     temporary = run_dir / f"{filename}.tmp"
     torch.save(checkpoint, temporary)
@@ -119,9 +123,11 @@ def train_from_config(config_path):
         np.random.seed(config["seed"])
         torch.manual_seed(config["seed"])
         torch.set_num_threads(1)
-        agent = TeacherPPOAgent(48, 2, hidden_size=config["hidden_size"], **config["hyperparameters"])
+        normalize = config.get("normalize_observations", False)
+        agent = TeacherPPOAgent(48, 2, hidden_size=config["hidden_size"], normalize_observations=normalize,
+                                **config["hyperparameters"])
         num_envs = config.get("num_envs", 1)
-        config.update(num_envs=num_envs, worker_timeout_seconds=config.get("worker_timeout_seconds", 120),
+        config.update(num_envs=num_envs, normalize_observations=normalize, worker_timeout_seconds=config.get("worker_timeout_seconds", 120),
                       target_score=config.get("target_score", 0.5), target_episode=None,
                       target_environment_steps=None, score_milestones=[],
                       worker_seeds=[config["seed"] + index for index in range(num_envs)],
@@ -129,7 +135,7 @@ def train_from_config(config_path):
                       samples_per_rollout=2 * num_envs * config["rollout_steps"],
                       episode_order="rollout step, then environment index",
                       collection="frozen_worker_rollouts",
-                      status="running", algorithm="ppo_gae_advnorm", policy="privileged_teacher",
+                      status="running", algorithm="ppo_gae_advnorm_obsnorm" if normalize else "ppo_gae_advnorm", policy="privileged_teacher",
                       state_size=48, action_size=2, num_agents=2, num_trajectories=2 * num_envs,
                       observation_order="self_then_other", started_at=datetime.now(timezone.utc).isoformat(),
                       episodes=0, time_limit_episodes=0, iterations_completed=0,

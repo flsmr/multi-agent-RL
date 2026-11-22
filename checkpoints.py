@@ -14,7 +14,8 @@ def load_policy(checkpoint_path):
             48, 2, "self_then_other"
         ):
             raise ValueError("Expected a privileged Tennis teacher checkpoint.")
-        model = TeacherActorCritic(48, 2, hidden_size=checkpoint["hidden_size"])
+        model = TeacherActorCritic(48, 2, hidden_size=checkpoint["hidden_size"],
+                                   normalize_observations=checkpoint.get("normalize_observations", False))
     elif kind == "student":
         if (checkpoint["state_size"], checkpoint["action_size"]) != (24, 2):
             raise ValueError("Expected a local Tennis student checkpoint.")

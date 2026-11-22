@@ -86,11 +86,16 @@ class LocalTeacherCollector:
         self.env.close()
 
 
+def snapshot_tensors(model):
+    """Parameters plus observation-normalization buffers, in a fixed order."""
+    return list(model.parameters()) + list(model.buffers())
+
+
 def _copy_parameters(model, shared_weights):
     flat = np.frombuffer(shared_weights, dtype=np.float32)
     offset = 0
     with torch.no_grad():
-        for parameter in model.parameters():
+        for parameter in snapshot_tensors(model):
             count = parameter.numel()
             parameter.copy_(torch.from_numpy(flat[offset:offset + count]).view_as(parameter))
             offset += count
@@ -98,7 +103,8 @@ def _copy_parameters(model, shared_weights):
         raise RuntimeError("Teacher snapshot does not match the worker architecture.")
 
 
-def _worker(connection, shared_weights, hidden_size, environment, seed, worker_id):
+def _worker(connection, shared_weights, hidden_size, environment, seed, worker_id,
+            normalize_observations=False):
     os.setsid()  # Unity belongs to this group even if its Python worker crashes.
     signal.signal(signal.SIGINT, signal.SIG_IGN)
     torch.set_num_threads(1)
@@ -106,7 +112,8 @@ def _worker(connection, shared_weights, hidden_size, environment, seed, worker_i
     logging.getLogger("unityagents").setLevel(logging.WARNING)
     collector = None
     try:
-        model = TeacherActorCritic(48, 2, hidden_size=hidden_size).eval().requires_grad_(False)
+        model = TeacherActorCritic(48, 2, hidden_size=hidden_size,
+                                   normalize_observations=normalize_observations).eval().requires_grad_(False)
         torch.manual_seed(seed)
         collector = LocalTeacherCollector(environment, seed, worker_id)
         connection.send(("ok", None))
@@ -168,12 +175,13 @@ class TeacherRolloutPool:
                 self.local = LocalTeacherCollector(environment, seed, worker_id)
             else:
                 context = mp.get_context("spawn")
-                self.shared_weights = context.RawArray("f", sum(p.numel() for p in model.parameters()))
+                self.shared_weights = context.RawArray("f", sum(p.numel() for p in snapshot_tensors(model)))
                 hidden_size = model.actor[0].out_features
                 for index in range(num_envs):
                     parent, child = context.Pipe()
                     process = context.Process(target=_worker, args=(
-                        child, self.shared_weights, hidden_size, environment, seed + index, worker_id + index))
+                        child, self.shared_weights, hidden_size, environment, seed + index, worker_id + index,
+                        model.normalize_observations))
                     self.connections.append(parent)
                     self.processes.append(process)
                     try:
@@ -229,7 +237,7 @@ class TeacherRolloutPool:
                 # Only the parent writes this snapshot, before issuing collect commands.
                 flat = np.frombuffer(self.shared_weights, dtype=np.float32)
                 offset = 0
-                for parameter in self.model.parameters():
+                for parameter in snapshot_tensors(self.model):
                     count = parameter.numel()
                     flat[offset:offset + count] = parameter.detach().cpu().numpy().reshape(-1)
                     offset += count

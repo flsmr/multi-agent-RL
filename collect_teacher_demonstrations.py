@@ -81,7 +81,7 @@ def collect_worker(task, ready, results, start, stop):
         brain = env.brain_names[0]
         local = np.asarray(env.reset(train_mode=True)[brain].vector_observations, dtype=np.float32)
         with torch.inference_mode():
-            model.actor(torch.as_tensor(teacher_observations(local)))
+            model.mean_action(torch.as_tensor(teacher_observations(local)))
         ready.put(task["index"])
         if not start.wait(timeout=120):
             raise TimeoutError("Collector start barrier timed out.")
@@ -94,7 +94,7 @@ def collect_worker(task, ready, results, start, stop):
         with torch.inference_mode():
             while not stop.is_set():
                 episode_id = (task["index"] << 32) + episodes + 1
-                actions = torch.tanh(model.actor(torch.as_tensor(teacher_observations(local)))).numpy()
+                actions = model.mean_action(torch.as_tensor(teacher_observations(local))).numpy()
                 if not benchmark:
                     buffers["observations"].append(local.copy())
                     buffers["target_actions"].append(actions.copy())

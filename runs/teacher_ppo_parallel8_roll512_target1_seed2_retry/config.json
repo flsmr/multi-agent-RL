@@ -1,0 +1,93 @@
+{
+  "seed": 2,
+  "worker_id": 7500,
+  "iterations": 2000,
+  "rollout_steps": 512,
+  "hidden_size": 128,
+  "environment": "env/Tennis_Linux/Tennis.x86_64",
+  "checkpoint_every": 40,
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "gamma": 0.995,
+    "clip_epsilon": 0.2,
+    "update_epochs": 4,
+    "minibatch_size": 512,
+    "value_loss_coef": 0.5,
+    "gae_lambda": 0.95
+  },
+  "name": "teacher_ppo_parallel8_roll512_target1_seed2_retry",
+  "status": "complete",
+  "num_envs": 8,
+  "worker_timeout_seconds": 120,
+  "target_score": 1.0,
+  "target_episode": 12944,
+  "target_environment_steps": 554224,
+  "score_milestones": [
+    {
+      "threshold": 0.5,
+      "episode": 12809,
+      "environment_steps": 508160,
+      "rolling100": 0.5098000076413155,
+      "elapsed_seconds": 204.08617945099832,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/milestone_0.5.pt"
+    },
+    {
+      "threshold": 1.0,
+      "episode": 12944,
+      "environment_steps": 554224,
+      "rolling100": 1.0009000149555505,
+      "elapsed_seconds": 221.77988159500092,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/milestone_1.0.pt"
+    }
+  ],
+  "worker_seeds": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "worker_ids": [
+    7500,
+    7501,
+    7502,
+    7503,
+    7504,
+    7505,
+    7506,
+    7507
+  ],
+  "samples_per_rollout": 8192,
+  "episode_order": "rollout step, then environment index",
+  "collection": "frozen_worker_rollouts",
+  "algorithm": "ppo_gae_advnorm",
+  "policy": "privileged_teacher",
+  "state_size": 48,
+  "action_size": 2,
+  "num_agents": 2,
+  "num_trajectories": 16,
+  "observation_order": "self_then_other",
+  "started_at": "2026-11-21T21:23:38.312086+00:00",
+  "episodes": 12950,
+  "time_limit_episodes": 12,
+  "iterations_completed": 135,
+  "environment_steps": 557056,
+  "transitions": 1114112,
+  "solved_episode": 12809,
+  "final_rolling100": 1.0189000152237713,
+  "best_rolling100": 1.0189000152237713,
+  "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt",
+  "software": {
+    "torch": "2.14.1+cpu",
+    "numpy": "1.26.4",
+    "device": "cpu"
+  },
+  "environment_startup_seconds": 2.563357148996147,
+  "elapsed_seconds": 222.3979262770008,
+  "solved_environment_steps": 508160,
+  "stop_reason": "target_score",
+  "finished_at": "2026-11-21T21:27:20.710214+00:00"
+}

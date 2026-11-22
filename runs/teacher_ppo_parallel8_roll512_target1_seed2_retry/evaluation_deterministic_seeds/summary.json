@@ -1,0 +1,117 @@
+{
+  "status": "complete",
+  "policy_type": "teacher",
+  "mode": "deterministic",
+  "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt",
+  "checkpoint_sha256": "5b92e79191c6580ba10cbfb7bffda69e28c2d15a3ac5cf1c4d6aee1f1074590a",
+  "seeds": [
+    10002,
+    10003,
+    10004,
+    10005,
+    10006
+  ],
+  "episodes_per_seed": 100,
+  "workers": 4,
+  "max_steps": 10000,
+  "seed_timeout_seconds": 1000,
+  "started_at": "2026-11-21T21:27:22.989741+00:00",
+  "per_seed": [
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10002,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.750000026077032,
+      "mean_agent_returns": [
+        1.7349000258557499,
+        1.728700025882572
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 66,
+      "final_rolling100": 1.750000026077032,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10003,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.750000026077032,
+      "mean_agent_returns": [
+        1.737000025883317,
+        1.7266000258550047
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 66,
+      "final_rolling100": 1.750000026077032,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10004,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7780000264942646,
+      "mean_agent_returns": [
+        1.7640000262856483,
+        1.753700026255101
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7780000264942646,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10005,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.755000026151538,
+        1.7587000263296069
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10006,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7630000262707473,
+        1.7507000262103976
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt"
+    }
+  ],
+  "mean_score": 1.7656000263094902,
+  "seed_mean_std": 0.0142933553124735,
+  "minimum_seed_mean": 1.750000026077032,
+  "maximum_seed_mean": 1.7780000264942646,
+  "passed_seeds": 5,
+  "seed_count": 5,
+  "episodes": 500,
+  "truncated_episodes": 0,
+  "time_limit_episodes": 333,
+  "finished_at": "2026-11-21T21:32:39.898508+00:00",
+  "elapsed_seconds": 316.9086251150002
+}

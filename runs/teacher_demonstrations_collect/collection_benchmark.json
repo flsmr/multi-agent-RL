@@ -1,0 +1,35 @@
+{
+  "selected_workers": 16,
+  "measurements": [
+    {
+      "workers": 1,
+      "examples_per_second": 1980.5551205998522,
+      "startup_seconds": 1.295910314998764
+    },
+    {
+      "workers": 2,
+      "examples_per_second": 3938.693161375057,
+      "startup_seconds": 1.5934934859978966
+    },
+    {
+      "workers": 4,
+      "examples_per_second": 7867.748270878955,
+      "startup_seconds": 1.891231315999903
+    },
+    {
+      "workers": 8,
+      "examples_per_second": 12101.667146898459,
+      "startup_seconds": 2.6149326279992238
+    },
+    {
+      "workers": 12,
+      "examples_per_second": 13173.641998642674,
+      "startup_seconds": 3.980575408000732
+    },
+    {
+      "workers": 16,
+      "examples_per_second": 13766.878512977564,
+      "startup_seconds": 4.815723841002182
+    }
+  ]
+}

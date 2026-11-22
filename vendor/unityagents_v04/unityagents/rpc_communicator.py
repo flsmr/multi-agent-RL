@@ -15,7 +15,9 @@ logger = logging.getLogger("unityagents")
 
 
 class UnityToExternalServicerImplementation(UnityToExternalServicer):
-    parent_conn, child_conn = Pipe()
+    def __init__(self):
+        # A closed environment must not leave the next instance with closed pipes.
+        self.parent_conn, self.child_conn = Pipe()
 
     def Initialize(self, request, context):
         self.child_conn.send(request)

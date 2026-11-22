@@ -1,0 +1,173 @@
+{
+  "hardware": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12600K",
+    "physical_cores": 10,
+    "logical_cpus": 16,
+    "ram_capacity_gib": 94.08438873291016,
+    "device": "cpu",
+    "peak_ram_recorded": false
+  },
+  "timings": {
+    "teacher_ppo_seed0": {
+      "elapsed_seconds": 2008.1138651270012,
+      "started_at": "2026-11-21T15:06:37.381524+00:00",
+      "finished_at": "2026-11-21T15:40:05.495623+00:00"
+    },
+    "teacher_ppo_seed2": {
+      "elapsed_seconds": 1948.8501282139987,
+      "started_at": "2026-11-21T15:01:31.805848+00:00",
+      "finished_at": "2026-11-21T15:34:00.656170+00:00"
+    },
+    "teacher_ppo_longroll_seed2": {
+      "elapsed_seconds": 1194.0833533139994,
+      "started_at": "2026-11-21T15:20:25.847135+00:00",
+      "finished_at": "2026-11-21T15:40:19.930705+00:00",
+      "first_solve_seconds": 1074.8732829769979,
+      "first_solve_environment_steps": 579040,
+      "first_solve_episode": 11687
+    },
+    "teacher_demonstrations_collect": {
+      "elapsed_seconds": 99.64282907300003,
+      "started_at": "2026-11-21T16:21:36.700290+00:00",
+      "finished_at": "2026-11-21T16:23:16.343340+00:00"
+    },
+    "student_distill_seed0": {
+      "elapsed_seconds": 22.060313641999528,
+      "started_at": "2026-11-21T16:24:17.367628+00:00",
+      "finished_at": "2026-11-21T16:24:39.432490+00:00"
+    },
+    "teacher_ppo_parallel8_longroll_seed2": {
+      "elapsed_seconds": 454.2618334630024,
+      "started_at": "2026-11-21T20:51:44.712866+00:00",
+      "finished_at": "2026-11-21T20:59:18.974897+00:00",
+      "solve_observed_seconds": 453.60463850799715,
+      "first_solve_environment_steps": 1130968,
+      "first_solve_episode": 30879,
+      "num_envs": 8,
+      "rollout_steps_per_environment": 4096,
+      "player_samples_per_update": 65536,
+      "timing_note": "Solve checked after complete rollout collection; observed wall time includes the remainder of that rollout.",
+      "evaluations": {
+        "stochastic": {
+          "mean_score": 0.4593800069093704,
+          "seed_mean_std": 0.044226203275991145,
+          "passed_seeds": 1,
+          "seed_count": 5,
+          "episodes": 500,
+          "elapsed_seconds": 87.37441376999777
+        },
+        "deterministic": {
+          "mean_score": 1.1001000164076686,
+          "seed_mean_std": 0.07258522684957619,
+          "passed_seeds": 5,
+          "seed_count": 5,
+          "episodes": 500,
+          "elapsed_seconds": 137.76149926699873
+        }
+      }
+    }
+  },
+  "successful_stages_seconds": 1315.786496028999,
+  "timing_notes": "Wall-clock run durations; teacher trials overlapped; no GPU used. Successful-stage sum excludes failed trials, evaluation and interactive work.",
+  "training_search_span_seconds": 2328.124857,
+  "training_trial_duration_sum_seconds": 5151.047346654999,
+  "search_span_plus_collection_and_distillation_seconds": 2449.8279997149994,
+  "main_experiment": {
+    "teacher_run": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry",
+    "collection_run": "runs/teacher_demonstrations_target1",
+    "dataset": "datasets/teacher_demonstrations_target1",
+    "student_run": "runs/student_distill_target1_seed0",
+    "teacher_checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/checkpoint.pt",
+    "student_checkpoint": "runs/student_distill_target1_seed0/best.pt",
+    "evaluations": {
+      "teacher_stochastic": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/evaluation_stochastic_seeds",
+      "teacher_deterministic": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/evaluation_deterministic_seeds",
+      "student_deterministic": "runs/student_distill_target1_seed0/evaluation_deterministic_seeds"
+    },
+    "description": "8 independent frozen rollout workers \u00d7 512 steps; teacher trained to rolling100\u22651.0; fresh deterministic-teacher demonstrations and offline local student",
+    "evaluation_seeds": [
+      10002,
+      10003,
+      10004,
+      10005,
+      10006
+    ],
+    "episodes_per_evaluation_seed": 100,
+    "student_selection": "lowest held-out action MSE",
+    "teacher_selection": "final collected policy at first observed target-1 rollout",
+    "training_seed": 2,
+    "student_seed": 0,
+    "interrupted_attempt": "runs/teacher_ppo_parallel8_roll512_target1_seed2",
+    "interrupted_attempt_note": "Separate attempt received SIGTERM before target; main experiment is a complete deterministic seeded rerun, not resumed training.",
+    "timings": {
+      "teacher": {
+        "elapsed_seconds": 222.3979262770008,
+        "started_at": "2026-11-21T21:23:38.312086+00:00",
+        "finished_at": "2026-11-21T21:27:20.710214+00:00"
+      },
+      "collection": {
+        "elapsed_seconds": 76.20196879700234,
+        "started_at": "2026-11-21T21:27:22.993197+00:00",
+        "finished_at": "2026-11-21T21:28:39.195454+00:00"
+      },
+      "student": {
+        "elapsed_seconds": 69.59612292899692,
+        "started_at": "2026-11-21T21:28:41.305970+00:00",
+        "finished_at": "2026-11-21T21:29:50.910362+00:00"
+      }
+    },
+    "pipeline_stages_seconds": 368.19601800300006,
+    "timing_note": "Sum of complete main teacher, collection and distillation stage wall times; excludes evaluation, GIF, search and separately retained interrupted attempt. Collection and teacher evaluation overlapped.",
+    "results": {
+      "teacher_stochastic": {
+        "mean_score": 0.8835800132043661,
+        "seed_mean_std": 0.05077590054422405,
+        "passed_seeds": 5,
+        "seed_count": 5,
+        "episodes": 500,
+        "time_limit_episodes": 37,
+        "truncated_episodes": 0,
+        "checkpoint_sha256": "5b92e79191c6580ba10cbfb7bffda69e28c2d15a3ac5cf1c4d6aee1f1074590a"
+      },
+      "teacher_deterministic": {
+        "mean_score": 1.7656000263094902,
+        "seed_mean_std": 0.0142933553124735,
+        "passed_seeds": 5,
+        "seed_count": 5,
+        "episodes": 500,
+        "time_limit_episodes": 333,
+        "truncated_episodes": 0,
+        "checkpoint_sha256": "5b92e79191c6580ba10cbfb7bffda69e28c2d15a3ac5cf1c4d6aee1f1074590a"
+      },
+      "student_deterministic": {
+        "mean_score": 1.7655800263099373,
+        "seed_mean_std": 0.01290279058715865,
+        "passed_seeds": 5,
+        "seed_count": 5,
+        "episodes": 500,
+        "time_limit_episodes": 333,
+        "truncated_episodes": 0,
+        "checkpoint_sha256": "122b17ad0df03f9a59b6c70545d59713a8e7dfa12cacb436e33cab8e16b14e41"
+      }
+    },
+    "score_milestones": [
+      {
+        "threshold": 0.5,
+        "episode": 12809,
+        "environment_steps": 508160,
+        "rolling100": 0.5098000076413155,
+        "elapsed_seconds": 204.08617945099832,
+        "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/milestone_0.5.pt"
+      },
+      {
+        "threshold": 1.0,
+        "episode": 12944,
+        "environment_steps": 554224,
+        "rolling100": 1.0009000149555505,
+        "elapsed_seconds": 221.77988159500092,
+        "checkpoint": "runs/teacher_ppo_parallel8_roll512_target1_seed2_retry/milestone_1.0.pt"
+      }
+    ]
+  },
+  "historical_summary_scope": "Top-level successful_stages_seconds and training-search timing fields refer to the original single-environment teacher/student pipeline. The current main pipeline is documented in main_experiment."
+}

@@ -1,0 +1,117 @@
+{
+  "status": "complete",
+  "policy_type": "student",
+  "mode": "deterministic",
+  "checkpoint": "runs/student_distill_target1_seed0/best.pt",
+  "checkpoint_sha256": "122b17ad0df03f9a59b6c70545d59713a8e7dfa12cacb436e33cab8e16b14e41",
+  "seeds": [
+    10002,
+    10003,
+    10004,
+    10005,
+    10006
+  ],
+  "episodes_per_seed": 100,
+  "workers": 4,
+  "max_steps": 10000,
+  "seed_timeout_seconds": 1000,
+  "started_at": "2026-11-21T21:29:52.476874+00:00",
+  "per_seed": [
+    {
+      "policy_type": "student",
+      "mode": "deterministic",
+      "seed": 10002,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7605000262521207,
+        1.753200026229024
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/student_distill_target1_seed0/best.pt"
+    },
+    {
+      "policy_type": "student",
+      "mode": "deterministic",
+      "seed": 10003,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7519000261090696,
+      "mean_agent_returns": [
+        1.737000025883317,
+        1.7296000258997082
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 66,
+      "final_rolling100": 1.7519000261090696,
+      "solved": true,
+      "checkpoint": "runs/student_distill_target1_seed0/best.pt"
+    },
+    {
+      "policy_type": "student",
+      "mode": "deterministic",
+      "seed": 10004,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7610000262409449,
+        1.7527000262401997
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/student_distill_target1_seed0/best.pt"
+    },
+    {
+      "policy_type": "student",
+      "mode": "deterministic",
+      "seed": 10005,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7510000260919332,
+      "mean_agent_returns": [
+        1.7389000259153544,
+        1.7257000258378685
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 66,
+      "final_rolling100": 1.7510000260919332,
+      "solved": true,
+      "checkpoint": "runs/student_distill_target1_seed0/best.pt"
+    },
+    {
+      "policy_type": "student",
+      "mode": "deterministic",
+      "seed": 10006,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.7750000264495611,
+      "mean_agent_returns": [
+        1.7628000262752175,
+        1.750900026205927
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 67,
+      "final_rolling100": 1.7750000264495611,
+      "solved": true,
+      "checkpoint": "runs/student_distill_target1_seed0/best.pt"
+    }
+  ],
+  "mean_score": 1.7655800263099373,
+  "seed_mean_std": 0.01290279058715865,
+  "minimum_seed_mean": 1.7510000260919332,
+  "maximum_seed_mean": 1.7750000264495611,
+  "passed_seeds": 5,
+  "seed_count": 5,
+  "episodes": 500,
+  "truncated_episodes": 0,
+  "time_limit_episodes": 333,
+  "finished_at": "2026-11-21T21:33:28.911060+00:00",
+  "elapsed_seconds": 216.43404461599857
+}

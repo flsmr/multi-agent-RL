@@ -1,0 +1,41 @@
+{
+  "dataset": "datasets/teacher_demonstrations_target1",
+  "seed": 0,
+  "hidden_size": 128,
+  "learning_rate": 0.0003,
+  "batch_size": 1024,
+  "epochs": 50,
+  "patience": 5,
+  "min_delta": 1e-06,
+  "device": "cpu",
+  "cpu_threads": "auto",
+  "name": "student_distill_target1_seed0",
+  "status": "complete",
+  "started_at": "2026-11-21T21:28:41.305970+00:00",
+  "environment": "env/Tennis_Linux/Tennis.x86_64",
+  "dataset_manifest_sha256": "6903a252bd9bd7e32265de9a94361fe7fbd59b552287a9d2e705abc2f5a56de7",
+  "teacher_sha256": "5b92e79191c6580ba10cbfb7bffda69e28c2d15a3ac5cf1c4d6aee1f1074590a",
+  "training_samples": 469940,
+  "validation_samples": 44258,
+  "training_episodes": 339,
+  "validation_episodes": 35,
+  "epochs_completed": 50,
+  "best_epoch": 48,
+  "best_validation_mse": 0.0013000424243322065,
+  "software": {
+    "torch": "2.14.1+cpu",
+    "numpy": "1.26.4",
+    "device": "cpu"
+  },
+  "selected_cpu_threads": 4,
+  "initial_validation_mse": 0.5933112363786432,
+  "stop_reason": "epoch_budget",
+  "final_validation": {
+    "mse": 0.0013110068607721016,
+    "movement_mse": 0.0008895255779619649,
+    "jump_mse": 0.0017324881435822382,
+    "jump_agreement": 0.9982150119752361
+  },
+  "finished_at": "2026-11-21T21:29:50.910362+00:00",
+  "elapsed_seconds": 69.59612292899692
+}

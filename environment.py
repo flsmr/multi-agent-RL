@@ -3,7 +3,17 @@ from pathlib import Path
 import subprocess
 import sys
 
+import numpy as np
+
 ROOT = Path(__file__).resolve().parent
+
+
+def teacher_observations(local_observations):
+    """Give each player its own stacked observation followed by the other player's."""
+    states = np.asarray(local_observations, dtype=np.float32)
+    if states.ndim not in (2, 3) or states.shape[-2:] != (2, 24) or not np.isfinite(states).all():
+        raise ValueError("Expected two finite Tennis observations of 24 values each.")
+    return np.concatenate((states, states[..., ::-1, :]), axis=-1)
 
 
 def make_env(environment, seed=0, worker_id=1, graphics=False):

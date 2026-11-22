@@ -1,0 +1,47 @@
+{
+  "seed": 0,
+  "worker_id": 2,
+  "iterations": 1000,
+  "rollout_steps": 1000,
+  "hidden_size": 128,
+  "environment": "env/Tennis_Linux/Tennis.x86_64",
+  "checkpoint_every": 20,
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "gamma": 0.99,
+    "clip_epsilon": 0.2,
+    "update_epochs": 10,
+    "minibatch_size": 512,
+    "value_loss_coef": 0.5,
+    "gae_lambda": 0.95
+  },
+  "name": "teacher_ppo_seed0",
+  "status": "complete",
+  "algorithm": "ppo_gae_advnorm",
+  "policy": "privileged_teacher",
+  "state_size": 48,
+  "action_size": 2,
+  "num_agents": 2,
+  "observation_order": "self_then_other",
+  "started_at": "2026-11-21T15:06:37.381524+00:00",
+  "episodes": 33711,
+  "iterations_completed": 1000,
+  "environment_steps": 1000000,
+  "transitions": 2000000,
+  "solved_episode": null,
+  "final_rolling100": 0.018000000268220902,
+  "best_rolling100": 0.11820000182837248,
+  "software": {
+    "torch": "2.14.1+cpu",
+    "numpy": "1.26.4",
+    "device": "cpu"
+  },
+  "elapsed_seconds": 2008.1138651270012,
+  "stop_reason": "iteration_budget",
+  "finished_at": "2026-11-21T15:40:05.495623+00:00",
+  "time_limit_episodes": 0,
+  "retained_artifacts": [
+    "config.json",
+    "episodes.csv"
+  ]
+}

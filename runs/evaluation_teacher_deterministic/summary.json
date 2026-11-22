@@ -1,0 +1,116 @@
+{
+  "status": "complete",
+  "policy_type": "teacher",
+  "mode": "deterministic",
+  "checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt",
+  "checkpoint_sha256": "2ee14101b5bdeff92a6c0de10d300dda363d738ddc722a4f8c25f17faff9aac4",
+  "seeds": [
+    10002,
+    10003,
+    10004,
+    10005,
+    10006
+  ],
+  "episodes_per_seed": 100,
+  "workers": 4,
+  "max_steps": 10000,
+  "started_at": "2026-11-21T16:40:35.209062+00:00",
+  "per_seed": [
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10002,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.2425000186264514,
+      "mean_agent_returns": [
+        1.2150000182166696,
+        1.2084000182710588
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 25,
+      "final_rolling100": 1.2425000186264514,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10003,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.2283000183477997,
+      "mean_agent_returns": [
+        1.2111000181175768,
+        1.1880000179633499
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 22,
+      "final_rolling100": 1.2283000183477997,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10004,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.2312000183947385,
+      "mean_agent_returns": [
+        1.2116000181809068,
+        1.1947000179998577
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 24,
+      "final_rolling100": 1.2312000183947385,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10005,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.2847000192292035,
+      "mean_agent_returns": [
+        1.2665000190027058,
+        1.2506000188924373
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 21,
+      "final_rolling100": 1.2847000192292035,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt"
+    },
+    {
+      "policy_type": "teacher",
+      "mode": "deterministic",
+      "seed": 10006,
+      "episodes": 100,
+      "max_steps": 10000,
+      "mean_score": 1.2313000184297562,
+      "mean_agent_returns": [
+        1.2058000180311501,
+        1.2015000181645155
+      ],
+      "truncated_episodes": 0,
+      "time_limit_episodes": 23,
+      "final_rolling100": 1.2313000184297562,
+      "solved": true,
+      "checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt"
+    }
+  ],
+  "mean_score": 1.24360001860559,
+  "seed_mean_std": 0.023609108775312488,
+  "minimum_seed_mean": 1.2283000183477997,
+  "maximum_seed_mean": 1.2847000192292035,
+  "passed_seeds": 5,
+  "seed_count": 5,
+  "episodes": 500,
+  "truncated_episodes": 0,
+  "time_limit_episodes": 115,
+  "finished_at": "2026-11-21T16:43:58.698073+00:00",
+  "elapsed_seconds": 203.4888917089993
+}

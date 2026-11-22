@@ -1,0 +1,18 @@
+{
+  "checkpoint": "runs/student_distill_target1_seed0/best.pt",
+  "checkpoint_sha256": "122b17ad0df03f9a59b6c70545d59713a8e7dfa12cacb436e33cab8e16b14e41",
+  "seed": 10002,
+  "policy_type": "student",
+  "mode": "deterministic",
+  "seconds": 12.0,
+  "fps": 15,
+  "dimensions": [
+    800,
+    450
+  ],
+  "environment_steps": 68,
+  "completed_episodes": 0,
+  "capture_elapsed_seconds": 12.196302220996586,
+  "source": "actual Unity rendering on isolated Xvfb display",
+  "gif_sha256": "40c3ef7966d01cc0d146793f077ed79c92999dcee63ab6a6dde3f0ed04298d06"
+}

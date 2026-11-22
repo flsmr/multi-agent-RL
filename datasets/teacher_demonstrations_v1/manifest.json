@@ -1,0 +1,461 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "teacher_checkpoint": "runs/teacher_ppo_longroll_seed2/best.pt",
+  "teacher_sha256": "2ee14101b5bdeff92a6c0de10d300dda363d738ddc722a4f8c25f17faff9aac4",
+  "environment": "env/Tennis_Linux/Tennis.x86_64",
+  "observation_size": 24,
+  "action_size": 2,
+  "target_mode": "deterministic",
+  "validation_fraction": 0.1,
+  "split_seed": 20000,
+  "split_rule": "blake2b(seed:global_episode_id); whole match, both players",
+  "samples": 516518,
+  "episodes": 549,
+  "shards": [
+    {
+      "file": "worker_00_0000.npz",
+      "samples": 32730,
+      "validation_samples": 8008,
+      "sha256": "2838db50e6980ae1b2964339bd220bbc18cda198d9cade44366776073b1d2019"
+    },
+    {
+      "file": "worker_01_0000.npz",
+      "samples": 31524,
+      "validation_samples": 1728,
+      "sha256": "b872a9d8d07056e628802b32872d6e7768864856024b2ba248633d6d23a5d3b1"
+    },
+    {
+      "file": "worker_02_0000.npz",
+      "samples": 32294,
+      "validation_samples": 1184,
+      "sha256": "66ef58ef7dc1f075b3264cf3ce867ce851aca498834d67a89f6b0fdfb9651377"
+    },
+    {
+      "file": "worker_03_0000.npz",
+      "samples": 32322,
+      "validation_samples": 1380,
+      "sha256": "0039f221c4da6a9ef43c8ebc3a3b43b5192171853dbc7791ffbceca4e014526f"
+    },
+    {
+      "file": "worker_04_0000.npz",
+      "samples": 32768,
+      "validation_samples": 866,
+      "sha256": "40bd4b93cbf82573c2c3422334a33910356083d8f5f01e6f8d2ffa8ba610c767"
+    },
+    {
+      "file": "worker_04_0001.npz",
+      "samples": 74,
+      "validation_samples": 0,
+      "sha256": "5e184e5f84e419a179143b1a4605dbf5fa7424992824578a0bc15e40febc9fbd"
+    },
+    {
+      "file": "worker_05_0000.npz",
+      "samples": 32768,
+      "validation_samples": 4360,
+      "sha256": "606d0ac4e902f08e462c0437e7b887f0b48707dab7ce498b827ca595a205e388"
+    },
+    {
+      "file": "worker_05_0001.npz",
+      "samples": 4,
+      "validation_samples": 0,
+      "sha256": "61366c34e46bea6848c95fcfeece573c486895c3a165bb41b8ca438c3121fb1a"
+    },
+    {
+      "file": "worker_06_0000.npz",
+      "samples": 31284,
+      "validation_samples": 1718,
+      "sha256": "0acde4f0e7f276372419de4fae86078276c2d4ec7c3585bfb8c3316ef2b40d7d"
+    },
+    {
+      "file": "worker_07_0000.npz",
+      "samples": 32768,
+      "validation_samples": 5954,
+      "sha256": "4edfbb0b29cfee35e5e4e2ecd9499a478bd03d141151e40b2f5794af4f31f78d"
+    },
+    {
+      "file": "worker_07_0001.npz",
+      "samples": 268,
+      "validation_samples": 268,
+      "sha256": "c542867ccc7e7f9f9e8efbcdc6d5e38f591d6a0735f58e88ace6f2dd6f7bc35c"
+    },
+    {
+      "file": "worker_08_0000.npz",
+      "samples": 32768,
+      "validation_samples": 3328,
+      "sha256": "6115f89967971a60dd30209da63b620beaaaa36aeac3fba61f211e54ace7adf4"
+    },
+    {
+      "file": "worker_08_0001.npz",
+      "samples": 20,
+      "validation_samples": 0,
+      "sha256": "c1771b380b3c133ae26567905eeac1d3aab5584a208a22c12da0022c3d487b4e"
+    },
+    {
+      "file": "worker_09_0000.npz",
+      "samples": 32420,
+      "validation_samples": 2110,
+      "sha256": "067250427b38d5d09313d6366464a1e087db4aaf91400641c53003256be0aa89"
+    },
+    {
+      "file": "worker_10_0000.npz",
+      "samples": 32768,
+      "validation_samples": 6236,
+      "sha256": "763de81d0f3d2a38e7fcec3d6429e6af6821f668c13e84cb853d2ed613de0ec7"
+    },
+    {
+      "file": "worker_10_0001.npz",
+      "samples": 204,
+      "validation_samples": 0,
+      "sha256": "b9b0edeb0c4a6efb4ee7b737f1af46d8e30bc39c4602f14e7b63cbcdaf699533"
+    },
+    {
+      "file": "worker_11_0000.npz",
+      "samples": 31376,
+      "validation_samples": 5658,
+      "sha256": "122f01e409ebb0eb54ce17fd46de3aa76a46eba1185abab120a12a388193e7a7"
+    },
+    {
+      "file": "worker_12_0000.npz",
+      "samples": 32768,
+      "validation_samples": 294,
+      "sha256": "1cb8e0185a5ca8b45e6d90d1cd524e334346c28207d2031d61f2040ef65e1369"
+    },
+    {
+      "file": "worker_12_0001.npz",
+      "samples": 196,
+      "validation_samples": 0,
+      "sha256": "c80d2a50389be2054b4806a3cc5528bc5b8624de796d2f813dae1354691c1a2b"
+    },
+    {
+      "file": "worker_13_0000.npz",
+      "samples": 32354,
+      "validation_samples": 4132,
+      "sha256": "de324091203e0513b8423c99629b009e399b8968ffe62747447f63cf9e9bfc17"
+    },
+    {
+      "file": "worker_14_0000.npz",
+      "samples": 31440,
+      "validation_samples": 3144,
+      "sha256": "0cc85e0959b80ea97faf0e53effc8f8286f41553733829c81b11e47bafa2a2b6"
+    },
+    {
+      "file": "worker_15_0000.npz",
+      "samples": 31400,
+      "validation_samples": 634,
+      "sha256": "22f6090e5a8d81197e8359e886e782494efe3c8e22a1bf610ce0ee057723a2a1"
+    }
+  ],
+  "workers": [
+    {
+      "index": 0,
+      "seed": 20000,
+      "worker_id": 100,
+      "samples": 32730,
+      "episodes": 30,
+      "environment_steps": 16365,
+      "elapsed_seconds": 34.40604749799968,
+      "shards": [
+        {
+          "file": "worker_00_0000.npz",
+          "samples": 32730,
+          "validation_samples": 8008,
+          "sha256": "2838db50e6980ae1b2964339bd220bbc18cda198d9cade44366776073b1d2019"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "seed": 20001,
+      "worker_id": 101,
+      "samples": 31524,
+      "episodes": 32,
+      "environment_steps": 15762,
+      "elapsed_seconds": 32.780399639999814,
+      "shards": [
+        {
+          "file": "worker_01_0000.npz",
+          "samples": 31524,
+          "validation_samples": 1728,
+          "sha256": "b872a9d8d07056e628802b32872d6e7768864856024b2ba248633d6d23a5d3b1"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "seed": 20002,
+      "worker_id": 102,
+      "samples": 32294,
+      "episodes": 32,
+      "environment_steps": 16147,
+      "elapsed_seconds": 35.01854842200191,
+      "shards": [
+        {
+          "file": "worker_02_0000.npz",
+          "samples": 32294,
+          "validation_samples": 1184,
+          "sha256": "66ef58ef7dc1f075b3264cf3ce867ce851aca498834d67a89f6b0fdfb9651377"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "seed": 20003,
+      "worker_id": 103,
+      "samples": 32322,
+      "episodes": 43,
+      "environment_steps": 16161,
+      "elapsed_seconds": 35.06852539299871,
+      "shards": [
+        {
+          "file": "worker_03_0000.npz",
+          "samples": 32322,
+          "validation_samples": 1380,
+          "sha256": "0039f221c4da6a9ef43c8ebc3a3b43b5192171853dbc7791ffbceca4e014526f"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "seed": 20004,
+      "worker_id": 104,
+      "samples": 32842,
+      "episodes": 41,
+      "environment_steps": 16421,
+      "elapsed_seconds": 37.812520446001145,
+      "shards": [
+        {
+          "file": "worker_04_0000.npz",
+          "samples": 32768,
+          "validation_samples": 866,
+          "sha256": "40bd4b93cbf82573c2c3422334a33910356083d8f5f01e6f8d2ffa8ba610c767"
+        },
+        {
+          "file": "worker_04_0001.npz",
+          "samples": 74,
+          "validation_samples": 0,
+          "sha256": "5e184e5f84e419a179143b1a4605dbf5fa7424992824578a0bc15e40febc9fbd"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "seed": 20005,
+      "worker_id": 105,
+      "samples": 32772,
+      "episodes": 30,
+      "environment_steps": 16386,
+      "elapsed_seconds": 33.78286188700076,
+      "shards": [
+        {
+          "file": "worker_05_0000.npz",
+          "samples": 32768,
+          "validation_samples": 4360,
+          "sha256": "606d0ac4e902f08e462c0437e7b887f0b48707dab7ce498b827ca595a205e388"
+        },
+        {
+          "file": "worker_05_0001.npz",
+          "samples": 4,
+          "validation_samples": 0,
+          "sha256": "61366c34e46bea6848c95fcfeece573c486895c3a165bb41b8ca438c3121fb1a"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "seed": 20006,
+      "worker_id": 106,
+      "samples": 31284,
+      "episodes": 30,
+      "environment_steps": 15642,
+      "elapsed_seconds": 43.2906370669989,
+      "shards": [
+        {
+          "file": "worker_06_0000.npz",
+          "samples": 31284,
+          "validation_samples": 1718,
+          "sha256": "0acde4f0e7f276372419de4fae86078276c2d4ec7c3585bfb8c3316ef2b40d7d"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "seed": 20007,
+      "worker_id": 107,
+      "samples": 33036,
+      "episodes": 37,
+      "environment_steps": 16518,
+      "elapsed_seconds": 45.16918340600023,
+      "shards": [
+        {
+          "file": "worker_07_0000.npz",
+          "samples": 32768,
+          "validation_samples": 5954,
+          "sha256": "4edfbb0b29cfee35e5e4e2ecd9499a478bd03d141151e40b2f5794af4f31f78d"
+        },
+        {
+          "file": "worker_07_0001.npz",
+          "samples": 268,
+          "validation_samples": 268,
+          "sha256": "c542867ccc7e7f9f9e8efbcdc6d5e38f591d6a0735f58e88ace6f2dd6f7bc35c"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "seed": 20008,
+      "worker_id": 108,
+      "samples": 32788,
+      "episodes": 38,
+      "environment_steps": 16394,
+      "elapsed_seconds": 43.287477968999156,
+      "shards": [
+        {
+          "file": "worker_08_0000.npz",
+          "samples": 32768,
+          "validation_samples": 3328,
+          "sha256": "6115f89967971a60dd30209da63b620beaaaa36aeac3fba61f211e54ace7adf4"
+        },
+        {
+          "file": "worker_08_0001.npz",
+          "samples": 20,
+          "validation_samples": 0,
+          "sha256": "c1771b380b3c133ae26567905eeac1d3aab5584a208a22c12da0022c3d487b4e"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "seed": 20009,
+      "worker_id": 109,
+      "samples": 32420,
+      "episodes": 35,
+      "environment_steps": 16210,
+      "elapsed_seconds": 43.32674264000161,
+      "shards": [
+        {
+          "file": "worker_09_0000.npz",
+          "samples": 32420,
+          "validation_samples": 2110,
+          "sha256": "067250427b38d5d09313d6366464a1e087db4aaf91400641c53003256be0aa89"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "seed": 20010,
+      "worker_id": 110,
+      "samples": 32972,
+      "episodes": 38,
+      "environment_steps": 16486,
+      "elapsed_seconds": 35.19142913399992,
+      "shards": [
+        {
+          "file": "worker_10_0000.npz",
+          "samples": 32768,
+          "validation_samples": 6236,
+          "sha256": "763de81d0f3d2a38e7fcec3d6429e6af6821f668c13e84cb853d2ed613de0ec7"
+        },
+        {
+          "file": "worker_10_0001.npz",
+          "samples": 204,
+          "validation_samples": 0,
+          "sha256": "b9b0edeb0c4a6efb4ee7b737f1af46d8e30bc39c4602f14e7b63cbcdaf699533"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "seed": 20011,
+      "worker_id": 111,
+      "samples": 31376,
+      "episodes": 29,
+      "environment_steps": 15688,
+      "elapsed_seconds": 32.67037343099946,
+      "shards": [
+        {
+          "file": "worker_11_0000.npz",
+          "samples": 31376,
+          "validation_samples": 5658,
+          "sha256": "122f01e409ebb0eb54ce17fd46de3aa76a46eba1185abab120a12a388193e7a7"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "seed": 20012,
+      "worker_id": 112,
+      "samples": 32964,
+      "episodes": 31,
+      "environment_steps": 16482,
+      "elapsed_seconds": 34.27082225699996,
+      "shards": [
+        {
+          "file": "worker_12_0000.npz",
+          "samples": 32768,
+          "validation_samples": 294,
+          "sha256": "1cb8e0185a5ca8b45e6d90d1cd524e334346c28207d2031d61f2040ef65e1369"
+        },
+        {
+          "file": "worker_12_0001.npz",
+          "samples": 196,
+          "validation_samples": 0,
+          "sha256": "c80d2a50389be2054b4806a3cc5528bc5b8624de796d2f813dae1354691c1a2b"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "seed": 20013,
+      "worker_id": 113,
+      "samples": 32354,
+      "episodes": 31,
+      "environment_steps": 16177,
+      "elapsed_seconds": 34.54125442500299,
+      "shards": [
+        {
+          "file": "worker_13_0000.npz",
+          "samples": 32354,
+          "validation_samples": 4132,
+          "sha256": "de324091203e0513b8423c99629b009e399b8968ffe62747447f63cf9e9bfc17"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "seed": 20014,
+      "worker_id": 114,
+      "samples": 31440,
+      "episodes": 33,
+      "environment_steps": 15720,
+      "elapsed_seconds": 37.248227553001925,
+      "shards": [
+        {
+          "file": "worker_14_0000.npz",
+          "samples": 31440,
+          "validation_samples": 3144,
+          "sha256": "0cc85e0959b80ea97faf0e53effc8f8286f41553733829c81b11e47bafa2a2b6"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "seed": 20015,
+      "worker_id": 115,
+      "samples": 31400,
+      "episodes": 39,
+      "environment_steps": 15700,
+      "elapsed_seconds": 33.42841686899919,
+      "shards": [
+        {
+          "file": "worker_15_0000.npz",
+          "samples": 31400,
+          "validation_samples": 634,
+          "sha256": "22f6090e5a8d81197e8359e886e782494efe3c8e22a1bf610ce0ee057723a2a1"
+        }
+      ]
+    }
+  ],
+  "validation_samples": 51002,
+  "training_samples": 465516
+}

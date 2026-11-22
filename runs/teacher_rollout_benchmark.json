@@ -1,0 +1,92 @@
+{
+  "protocol": {
+    "device": "cpu",
+    "training_seed": 2,
+    "updates": 3,
+    "player_samples_per_update": 8192,
+    "total_environment_steps_per_setting": 12288,
+    "ppo_epochs": 4,
+    "minibatch_size": 512,
+    "steps_per_environment": "4096 / num_envs"
+  },
+  "notes": "One short sequential timing per setting. Earlier per-step measurements and new frozen-worker measurements were made at different times. Throughput includes collection and PPO updates, excludes startup/shutdown. This is not a convergence or multi-seed training study.",
+  "per_step_synchronization": [
+    {
+      "num_envs": 1,
+      "environment_steps": 12288,
+      "player_transitions": 24576,
+      "updates": 3,
+      "samples_per_update": 8192,
+      "startup_seconds": 0.6765477529988857,
+      "collection_seconds": 18.58870374900289,
+      "update_seconds": 0.5633716150041437,
+      "total_wall_seconds": 19.894707822000782,
+      "training_environment_steps_per_second": 641.601485293502
+    },
+    {
+      "num_envs": 4,
+      "environment_steps": 12288,
+      "player_transitions": 24576,
+      "updates": 3,
+      "samples_per_update": 8192,
+      "startup_seconds": 1.876687137002591,
+      "collection_seconds": 16.453192715001933,
+      "update_seconds": 0.5127978890013765,
+      "total_wall_seconds": 19.249487394001335,
+      "training_environment_steps_per_second": 724.2724746706222
+    },
+    {
+      "num_envs": 8,
+      "environment_steps": 12288,
+      "player_transitions": 24576,
+      "updates": 3,
+      "samples_per_update": 8192,
+      "startup_seconds": 3.0497383500041906,
+      "collection_seconds": 8.304111601995828,
+      "update_seconds": 0.528952708998986,
+      "total_wall_seconds": 12.494334556002286,
+      "training_environment_steps_per_second": 1391.1367071905852
+    }
+  ],
+  "frozen_worker_rollouts": [
+    {
+      "num_envs": 1,
+      "steps_per_environment": 4096,
+      "environment_steps": 12288,
+      "player_transitions": 24576,
+      "updates": 3,
+      "samples_per_update": 8192,
+      "startup_seconds": 0.7030561299980036,
+      "collection_seconds": 17.260699687998567,
+      "update_seconds": 0.5461000639916165,
+      "total_wall_seconds": 18.575819949997822,
+      "training_environment_steps_per_second": 690.07346469579
+    },
+    {
+      "num_envs": 4,
+      "steps_per_environment": 1024,
+      "environment_steps": 12288,
+      "player_transitions": 24576,
+      "updates": 3,
+      "samples_per_update": 8192,
+      "startup_seconds": 1.8289788119946024,
+      "collection_seconds": 6.455666503010434,
+      "update_seconds": 0.5031168310015346,
+      "total_wall_seconds": 9.216346706001787,
+      "training_environment_steps_per_second": 1765.8259224627363
+    },
+    {
+      "num_envs": 8,
+      "steps_per_environment": 512,
+      "environment_steps": 12288,
+      "player_transitions": 24576,
+      "updates": 3,
+      "samples_per_update": 8192,
+      "startup_seconds": 2.4926113710025675,
+      "collection_seconds": 4.705498338997131,
+      "update_seconds": 0.5206328619897249,
+      "total_wall_seconds": 8.32947074900585,
+      "training_environment_steps_per_second": 2351.2612920394427
+    }
+  ]
+}

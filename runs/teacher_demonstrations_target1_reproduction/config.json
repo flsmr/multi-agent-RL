@@ -1,0 +1,14 @@
+{
+  "teacher_checkpoint": "runs/teacher_ppo_target1_reproduction/checkpoint.pt",
+  "dataset": "datasets/teacher_demonstrations_target1_reproduction",
+  "workers": 16,
+  "samples": 500000,
+  "seed": 20000,
+  "base_worker_id": 7600,
+  "validation_fraction": 0.1,
+  "shard_samples": 32768,
+  "benchmark_seconds": 5,
+  "worker_timeout_seconds": 600,
+  "name": "teacher_demonstrations_target1_reproduction",
+  "status": "prepared"
+}

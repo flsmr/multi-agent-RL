@@ -15,6 +15,7 @@ The 12-second recording is illustrative; quantitative results come from separate
 
 ## Contents
 
+- [Project details](#project-details)
 - [Getting started](#getting-started)
 - [Usage](#usage)
 - [Results](#results)
@@ -24,6 +25,24 @@ The 12-second recording is illustrative; quantitative results come from separate
 - [Troubleshooting](#troubleshooting)
 - [Project structure and report](#project-structure-and-report)
 - [Acknowledgments and third-party licenses](#acknowledgments-and-third-party-licenses)
+
+## Project details
+
+Two agents control rackets on opposite sides of a net and cooperate to keep a
+ball in play.
+
+- **Rewards:** an agent receives `+0.1` for hitting the ball over the net and
+  `-0.01` when the ball hits the ground on its side or leaves the court.
+- **State space:** each agent observes 8 values (position and velocity of its own
+  racket and of the ball), stacked over three frames: 24 values per agent.
+- **Action space:** two continuous actions in `[-1, 1]`: horizontal movement and
+  jumping.
+- **Episode score:** the larger of the two agents' undiscounted returns.
+- **Solved:** when the average episode score over 100 consecutive episodes
+  reaches at least **+0.5**.
+
+The teacher additionally sees the other agent's 24 values during training
+(48 inputs). The final student acts on its own 24 values only.
 
 ## Getting started
 
@@ -121,9 +140,10 @@ means, not variation across independent training runs.
 | Normalized teacher, deterministic | 48 | 1.775 ± 0.000 | 5/5 |
 | Student of normalized teacher, deterministic | 24 | **1.775 ± 0.000** | **5/5** |
 
-The teacher used eight environments with 512 rollout steps each. It first reached
-a 100-episode training mean of **0.5 at 508,160 environment steps** and **1.0 at
-554,224 steps**. Student fitting used 514,198 freshly collected teacher examples;
+The teacher used eight environments with 512 rollout steps each. It **solved the environment at episode 12,809**: the
+100-episode training mean first reached 0.5 over episodes 12,710–12,809, at
+508,160 environment steps, and reached 1.0 at 554,224 steps (episode 12,944).
+Episodes are counted across all eight parallel games. Student fitting used 514,198 freshly collected teacher examples;
 epoch 48 was selected by held-out action MSE.
 
 ![Teacher learning curves across the evaluated configurations](assets/teacher_training.png)
@@ -148,10 +168,10 @@ the switch, training is unchanged and older checkpoints load as before.
 The current procedure was run with and without normalization on training seeds
 2, 10 and 20, with everything else identical:
 
-| Teacher | Steps to 0.5 (seeds 2 / 10 / 20) | Mean | Steps to 1.0, mean |
-| --- | ---: | ---: | ---: |
-| Baseline | 508,160 / 589,504 / 668,352 | 588,672 | 659,077 |
-| Observation normalization | 243,304 / 340,008 / 216,656 | **266,656** | **328,981** |
+| Teacher | Steps to 0.5 (seeds 2 / 10 / 20) | Mean | Episodes to 0.5, mean | Steps to 1.0, mean |
+| --- | ---: | ---: | ---: | ---: |
+| Baseline | 508,160 / 589,504 / 668,352 | 588,672 | 13,375 | 659,077 |
+| Observation normalization | 243,304 / 340,008 / 216,656 | **266,656** | **6,528** | **328,981** |
 
 Normalization reduced the steps to 0.5 by about **55%** and to 1.0 by about
 **50%**; every normalized seed was faster than every baseline seed. The student
@@ -165,13 +185,9 @@ comparison uses a single training seed; the normalization comparison uses three.
 
 ## Reproducing the study
 
-The task rewards successful returns with `+0.1` and penalizes lost balls with
-`-0.01`. Each player has 24 observation values and two continuous actions in
-`[-1, 1]`: horizontal motion and jumping. Episode score is the larger of the two
-players' undiscounted returns. The solve criterion is a mean of at least **0.5
-over 100 consecutive completed games**. The 1.0 training target is an extension
-of this criterion. Unity time-limit endings count as completed games;
-external evaluation safety cutoffs do not.
+The 1.0 training target extends the solve criterion described in
+[Project details](#project-details). Unity time-limit endings count as completed
+games; external evaluation safety cutoffs do not.
 
 Run the prepared configs in order to train a teacher, collect demonstrations,
 and fit a student in fresh directories:
